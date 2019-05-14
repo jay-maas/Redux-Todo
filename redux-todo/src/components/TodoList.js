@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addTodo, toggleCompleted } from '../actions'
+import { addTodo, toggleCompleted, deleteTodo } from '../actions'
 
 class TodoList extends React.Component {
     state = {
@@ -17,11 +17,14 @@ class TodoList extends React.Component {
     toggleCompleted = id => {
         this.props.toggleCompleted(id)
     }
+    deleteTodo = id => {
+        this.props.deleteTodo(id)
+    }
     render() {
         return (
             <>
                 {this.props.todos && this.props.todos.map(todo => (
-                    <div key={todo.id} style={{cursor: 'pointer'}}><p style={{textDecoration: `${todo.completed ? 'line-through' : 'none'}`}}onClick={() => this.toggleCompleted(todo.id)}>{todo.todo} </p></div>
+                    <div key={todo.id} style={{width: '25%', display: 'flex', position: 'relative'}}><div><p style={{width: '100%', textDecoration: `${todo.completed ? 'line-through' : 'none'}`, width: '100%', cursor: 'pointer'}} onClick={() => this.toggleCompleted(todo.id)}>{todo.todo}</p></div><span style={{cursor: 'no-drop', position: 'absolute', right: '0'}}onClick={() => this.deleteTodo(todo.id)}>x</span></div>
                 ))}
                 <input
                     type="text"
@@ -41,4 +44,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { addTodo, toggleCompleted })(TodoList)
+export default connect(mapStateToProps, { addTodo, toggleCompleted, deleteTodo })(TodoList)

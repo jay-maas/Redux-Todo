@@ -1,4 +1,4 @@
-import { UPDATE_TITLE, ADD_TODO, TOGGLE_COMPLETED } from '../actions'
+import { UPDATE_TITLE, ADD_TODO, TOGGLE_COMPLETED, DELETE_TODO } from '../actions'
 
 const initialState = {
     title: 'Todo List',
@@ -27,6 +27,11 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 todos: state.todos.map(todo => todo.id === action.payload ? {...todo, completed: !todo.completed} : todo)
+            }
+        case DELETE_TODO:
+            return {
+                ...state,
+                todos: state.todos.filter(todo => todo.id !== action.payload)
             }
         default:
             return state
