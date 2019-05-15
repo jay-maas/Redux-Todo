@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { updateTitle } from '../actions'
+import seaStar from '../assets/images/seaStar.png'
 
 class Title extends React.Component {
     state={
@@ -16,19 +17,33 @@ class Title extends React.Component {
         this.setState({ editing: false })
     }
     render() {
+        // let input = document.querySelector('input'); // get the input element
+        // input.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+        // resizeInput.call(input); // immediately call the function
+
+        // function resizeInput() {
+        //     this.style.width = this.value.length + "ch";
+        // }
         return (
-            <div>
+            <div style={{position: 'relative'}}>
                 {!this.state.editing ? (
-                    <h1 onClick={() => this.setState({ editing: true })}>{this.props.title}</h1>
+                    <h1 
+                    style={{ textShadow: '11px 4px 10px black',
+                    fontSize: '3em',
+                    margin: '0'
+                    }}
+                    onClick={() => this.setState({ editing: true })}>{this.props.title}</h1>
                 ) : (
                     <>
-                        <input
+                       <input
+                            className="Input"
                             type="text"
                             name="newTitle"
                             value={this.state.newTitle}
                             onChange={this.handleChanges}
                         />
-                        <button onClick={this.updateTitle}>Update Title</button>
+                        <img src={seaStar} alt='seaStart' style={{position: 'absolute',top: '0', 
+                        right: '0', width: '20%', height: 'auto'}} onClick={this.updateTitle}/>
                     </>
                 )}
             </div>

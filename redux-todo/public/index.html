@@ -22,6 +22,21 @@
     <title>React App</title>
   </head>
   <body>
+      <video class="background-video hero-bg-video is-playing" loop="loop" autoplay="autoplay" muted="muted" id="bgvid">
+        <source src="https://static.videezy.com/system/resources/previews/000/011/575/original/Beach_03_-_4K_res.mp4" type="video/mp4">
+      </video>
+      <audio
+      id="bgaudio"
+        src="https://www.soundjay.com/nature/sounds/ocean-wave-1.mp3"
+        autoplay
+        loop
+        >
+        Your browser does not support the <code>audio</code> element.
+    </audio>
+    <script>
+    const Bgaudio = document.getElementById('bgaudio')
+    Bgaudio.volume = .3
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
